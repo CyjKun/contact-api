@@ -2,7 +2,7 @@ package com.ms3.contactapi.api.request;
 
 import lombok.Data;
 
-import java.util.Set;
+import java.util.List;
 
 @Data
 public class ContactForm {
@@ -18,6 +18,6 @@ public class ContactForm {
     private String city;
     private String state;
     private String zipCode;
-    private Set<CommunicationForm> communication;
+    private List<CommunicationForm> communication;
 
 }

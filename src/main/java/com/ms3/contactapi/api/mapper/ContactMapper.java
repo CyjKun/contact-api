@@ -4,9 +4,6 @@ import com.ms3.contactapi.api.model.Communication;
 import com.ms3.contactapi.api.model.Contact;
 import com.ms3.contactapi.api.persistence.CommunicationEntity;
 import com.ms3.contactapi.api.persistence.ContactEntity;
-import com.ms3.contactapi.api.request.CommunicationForm;
-import com.ms3.contactapi.api.request.CommunicationParam;
-import com.ms3.contactapi.api.request.ContactForm;
 import com.ms3.contactapi.api.request.ContactParam;
 import com.ms3.contactapi.api.response.CommunicationResource;
 import com.ms3.contactapi.api.response.ContactResource;
@@ -28,16 +25,12 @@ public class ContactMapper extends ServiceMapper {
                 .customize(new ContactParamToEntity())
                 .register();
 
-        mapperFactory.classMap(CommunicationParam.class, CommunicationEntity.class)
-                .byDefault()
+        mapperFactory.classMap(ContactEntity.class, ContactResource.class)
+                .customize(new ContactEntityToResource())
                 .register();
 
         mapperFactory.classMap(Contact.class, ContactResource.class)
                 .customize(new ContactToResource())
-                .register();
-
-        mapperFactory.classMap(Communication.class, CommunicationResource.class)
-                .byDefault()
                 .register();
     }
 }

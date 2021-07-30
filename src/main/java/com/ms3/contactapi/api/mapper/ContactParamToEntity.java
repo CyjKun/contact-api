@@ -1,6 +1,5 @@
 package com.ms3.contactapi.api.mapper;
 
-import com.ms3.contactapi.api.persistence.CommunicationEntity;
 import com.ms3.contactapi.api.persistence.ContactEntity;
 import com.ms3.contactapi.api.request.ContactParam;
 import ma.glasnost.orika.CustomMapper;
@@ -23,6 +22,5 @@ public class ContactParamToEntity extends CustomMapper<ContactParam, ContactEnti
         contactEntity.setState(contactParam.getState());
         contactEntity.setUnit(contactParam.getUnit());
         contactEntity.setZipCode(contactParam.getZipCode());
-//        contactEntity.setCommunication(mapperFacade.mapAsSet(contactParam.getCommunication(), CommunicationEntity.class));
     }
 }

@@ -1,7 +1,6 @@
 package com.ms3.contactapi.api.mapper;
 
 import com.ms3.contactapi.api.model.Contact;
-import com.ms3.contactapi.api.model.Identification;
 import com.ms3.contactapi.api.response.AddressResource;
 import com.ms3.contactapi.api.response.CommunicationResource;
 import com.ms3.contactapi.api.response.ContactResource;
@@ -9,15 +8,12 @@ import com.ms3.contactapi.api.response.IdentificationResource;
 import ma.glasnost.orika.CustomMapper;
 import ma.glasnost.orika.MappingContext;
 
-import javax.persistence.Id;
-import java.util.Date;
-
 public class ContactToResource extends CustomMapper<Contact, ContactResource> {
 
     @Override
     public void mapAtoB(Contact contact,
                         ContactResource contactResource,
-                        MappingContext mappingContext) {
+                        MappingContext context) {
         IdentificationResource identificationResource = new IdentificationResource();
         identificationResource.setFirstName(contact.getFirstName());
         identificationResource.setLastName(contact.getLastName());
@@ -36,6 +32,6 @@ public class ContactToResource extends CustomMapper<Contact, ContactResource> {
 
         contactResource.setAddress(addressResource);
         contactResource.setIdentification(identificationResource);
-        contactResource.setCommunication(mapperFacade.mapAsSet(contact.getCommunication(), CommunicationResource.class));
+        contactResource.setCommunication(mapperFacade.mapAsList(contact.getCommunication(), CommunicationResource.class));
     }
 }

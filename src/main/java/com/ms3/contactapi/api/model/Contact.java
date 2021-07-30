@@ -1,9 +1,8 @@
 package com.ms3.contactapi.api.model;
 
-import com.ms3.contactapi.api.request.CommunicationForm;
 import lombok.Data;
 
-import java.util.Set;
+import java.util.List;
 
 @Data
 public class Contact {
@@ -19,5 +18,5 @@ public class Contact {
     private String city;
     private String state;
     private String zipCode;
-    private Set<Communication> communication;
+    private List<Communication> communication;
 }
