@@ -5,9 +5,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -63,7 +63,7 @@ public class ContactEntity extends BaseEntity {
     private String zipCode;
 
     @OneToMany(
-            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
             mappedBy = "contact"
     )
     private List<CommunicationEntity> communication = new ArrayList<>();

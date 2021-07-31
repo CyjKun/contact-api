@@ -9,4 +9,8 @@ public interface ContactService {
     ContactResource createContact(ContactForm contactForm);
 
     List<ContactResource> getAllContacts();
+
+    ContactResource getContact(Long id);
+
+    ContactResource updateContact(Long id, ContactForm contactForm);
 }

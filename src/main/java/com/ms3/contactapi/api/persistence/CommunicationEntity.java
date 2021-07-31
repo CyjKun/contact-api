@@ -32,7 +32,7 @@ public class CommunicationEntity extends BaseEntity {
     private boolean preferred;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contact_id")
+    @JoinColumn(name = "contact_id", nullable = false)
     private ContactEntity contact;
 
 }

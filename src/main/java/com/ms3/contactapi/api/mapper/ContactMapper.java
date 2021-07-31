@@ -1,11 +1,8 @@
 package com.ms3.contactapi.api.mapper;
 
-import com.ms3.contactapi.api.model.Communication;
 import com.ms3.contactapi.api.model.Contact;
-import com.ms3.contactapi.api.persistence.CommunicationEntity;
 import com.ms3.contactapi.api.persistence.ContactEntity;
 import com.ms3.contactapi.api.request.ContactParam;
-import com.ms3.contactapi.api.response.CommunicationResource;
 import com.ms3.contactapi.api.response.ContactResource;
 import com.ms3.contactapi.common.annotation.BeanMapper;
 import com.ms3.contactapi.common.mapper.ServiceMapper;

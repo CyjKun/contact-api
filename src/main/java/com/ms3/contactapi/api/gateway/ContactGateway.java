@@ -10,4 +10,6 @@ public interface ContactGateway {
     Contact create(Contact contact);
 
     List<ContactEntity> getAll();
+
+    ContactEntity getOneById(Long id);
 }

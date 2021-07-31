@@ -23,7 +23,7 @@ public class ContactGatewayImpl implements ContactGateway {
     @Override
     public Contact create(Contact contact){
         ContactEntity contactEntity = mapper.map(contact, ContactEntity.class);
-        contactRepository.saveAndFlush(contactEntity);
+        contactEntity = contactRepository.saveAndFlush(contactEntity);
         saveCommunication(contact, contactEntity);
         return mapper.map(contactEntity, Contact.class);
     }
@@ -31,6 +31,11 @@ public class ContactGatewayImpl implements ContactGateway {
     @Override
     public List<ContactEntity> getAll() {
         return contactRepository.findAll();
+    }
+
+    @Override
+    public  ContactEntity getOneById(Long id) {
+        return contactRepository.getById(id);
     }
 
     private void saveCommunication(Contact contact, ContactEntity contactEntity){

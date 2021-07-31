@@ -2,6 +2,7 @@ package com.ms3.contactapi.api.service.impl;
 
 import com.ms3.contactapi.api.gateway.ContactGateway;
 import com.ms3.contactapi.api.interactor.CreateContact;
+import com.ms3.contactapi.api.interactor.UpdateContact;
 import com.ms3.contactapi.api.mapper.ContactMapper;
 import com.ms3.contactapi.api.model.Contact;
 import com.ms3.contactapi.api.persistence.ContactEntity;
@@ -19,6 +20,7 @@ import java.util.List;
 public class ContactServiceImpl implements ContactService {
 
     private final CreateContact createContact;
+    private final UpdateContact updateContact;
     private final ContactGateway contactGateway;
     private final ContactMapper mapper;
 
@@ -35,5 +37,19 @@ public class ContactServiceImpl implements ContactService {
     public List<ContactResource> getAllContacts() {
         List<ContactEntity> contactEntities = contactGateway.getAll();
         return mapper.mapAsList(contactEntities, ContactResource.class);
+    }
+
+    @Override
+    public ContactResource getContact(Long id) {
+        return mapper.map(contactGateway.getOneById(id), ContactResource.class);
+    }
+
+    @Override
+    public ContactResource updateContact(Long id,
+                                         ContactForm contactForm) {
+        ContactParam contactParam = mapper.map(contactForm, ContactParam.class);
+        Contact contact = updateContact.execute(id, contactParam);
+
+        return mapper.map(contact, ContactResource.class);
     }
 }
