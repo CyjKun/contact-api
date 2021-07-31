@@ -9,4 +9,6 @@ import java.util.List;
 @DataRepository
 public interface CommunicationRepository extends JpaRepository<CommunicationEntity, Long> {
     List<CommunicationEntity> findAllByContactId(Long id);
+
+    void deleteByContactId(Long id);
 }

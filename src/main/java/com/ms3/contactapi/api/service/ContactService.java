@@ -13,4 +13,6 @@ public interface ContactService {
     ContactResource getContact(Long id);
 
     ContactResource updateContact(Long id, ContactForm contactForm);
+
+    void deleteContact(Long id);
 }

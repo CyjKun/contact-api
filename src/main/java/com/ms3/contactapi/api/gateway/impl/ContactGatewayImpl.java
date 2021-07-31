@@ -34,8 +34,13 @@ public class ContactGatewayImpl implements ContactGateway {
     }
 
     @Override
-    public  ContactEntity getOneById(Long id) {
+    public ContactEntity getOneById(Long id) {
         return contactRepository.getById(id);
+    }
+
+    @Override
+    public void deletedById(Long id) {
+        contactRepository.deleteById(id);
     }
 
     private void saveCommunication(Contact contact, ContactEntity contactEntity){

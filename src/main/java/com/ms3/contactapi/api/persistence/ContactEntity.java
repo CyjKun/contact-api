@@ -64,7 +64,8 @@ public class ContactEntity extends BaseEntity {
 
     @OneToMany(
             fetch = FetchType.LAZY,
-            mappedBy = "contact"
+            mappedBy = "contact",
+            orphanRemoval = true
     )
     private List<CommunicationEntity> communication = new ArrayList<>();
 }

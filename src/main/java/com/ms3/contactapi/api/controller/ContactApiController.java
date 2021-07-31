@@ -4,6 +4,7 @@ import com.ms3.contactapi.api.request.ContactForm;
 import com.ms3.contactapi.api.response.ContactResource;
 import com.ms3.contactapi.api.service.ContactService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class ContactApiController {
 
     private final ContactService contactService;
 
-    @PostMapping({"/create"})
+    @PostMapping("/create")
     public ContactResource createContact(@RequestBody ContactForm contactForm) {
         return contactService.createContact(contactForm);
     }
@@ -29,7 +30,7 @@ public class ContactApiController {
         return contactService.getAllContacts();
     }
 
-    @GetMapping({"/{id}"})
+    @GetMapping("/{id}")
     public ContactResource getContact(@PathVariable Long id) {
         return contactService.getContact(id);
     }
@@ -38,5 +39,10 @@ public class ContactApiController {
     public ContactResource updateContact(@PathVariable Long id,
                                          @RequestBody ContactForm contactForm) {
         return contactService.updateContact(id, contactForm);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteContact(@PathVariable Long id) {
+        contactService.deleteContact(id);
     }
 }

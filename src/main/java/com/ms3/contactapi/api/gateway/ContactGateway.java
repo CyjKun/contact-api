@@ -12,4 +12,6 @@ public interface ContactGateway {
     List<ContactEntity> getAll();
 
     ContactEntity getOneById(Long id);
+
+    void deletedById(Long id);
 }

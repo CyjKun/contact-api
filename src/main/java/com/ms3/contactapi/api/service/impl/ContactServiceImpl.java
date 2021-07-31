@@ -52,4 +52,9 @@ public class ContactServiceImpl implements ContactService {
 
         return mapper.map(contact, ContactResource.class);
     }
+
+    @Override
+    public void deleteContact(Long id) {
+        contactGateway.deletedById(id);
+    }
 }
