@@ -7,6 +7,7 @@ import com.ms3.contactapi.api.persistence.CommunicationEntity;
 import com.ms3.contactapi.api.persistence.ContactEntity;
 import com.ms3.contactapi.api.persistence.repository.CommunicationRepository;
 import com.ms3.contactapi.api.persistence.repository.ContactRepository;
+import com.ms3.contactapi.api.request.CommunicationParam;
 import com.ms3.contactapi.api.request.ContactParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,15 +40,16 @@ public class UpdateContactImpl implements UpdateContact {
         entity.setZipCode(contactParam.getZipCode());
 
         List<CommunicationEntity> communicationEntities = communicationRepository.findAllByContactId(id);
-        List<CommunicationEntity> updatedCommunication = mapper.mapAsList(contactParam.getCommunication(), CommunicationEntity.class);
+        List<CommunicationParam> updatedCommunication = contactParam.getCommunication();
 
-        updatedCommunication.forEach(communication -> {
-            communicationEntities.forEach(communicationEntity -> {
-                communicationEntity.setPreferred(communication.isPreferred());
-                communicationEntity.setType(communication.getType());
-                communicationEntity.setValue(communication.getValue());
-            });
-        });
+        for (int jj = 0; jj < updatedCommunication.size(); jj++) {
+            CommunicationEntity communicationEntity = communicationEntities.get(jj);
+            CommunicationParam communication = updatedCommunication.get(jj);
+            communicationEntity.setPreferred(communication.isPreferred());
+            communicationEntity.setType(communication.getType());
+            communicationEntity.setValue(communication.getValue());
+        }
+
         entity.setCommunication(communicationEntities);
         entity = contactRepository.save(entity);
 

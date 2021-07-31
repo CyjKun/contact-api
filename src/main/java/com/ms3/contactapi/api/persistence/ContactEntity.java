@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -64,8 +65,7 @@ public class ContactEntity extends BaseEntity {
 
     @OneToMany(
             fetch = FetchType.LAZY,
-            mappedBy = "contact",
-            orphanRemoval = true
+            mappedBy = "contact"
     )
     private List<CommunicationEntity> communication = new ArrayList<>();
 }

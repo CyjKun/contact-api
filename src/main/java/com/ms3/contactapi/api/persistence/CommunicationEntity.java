@@ -3,6 +3,8 @@ package com.ms3.contactapi.api.persistence;
 import com.ms3.contactapi.api.persistence.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,8 +34,9 @@ public class CommunicationEntity extends BaseEntity {
     @Column
     private boolean preferred;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "contact_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "contact_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private ContactEntity contact;
 
 }
