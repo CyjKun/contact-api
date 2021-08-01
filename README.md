@@ -7,14 +7,14 @@
 
 ## Getting Started
 ### Get the latest snapshot
-- $ `git clone https://github.com/CyjKun/contact-api.git`
+- $ git clone https://github.com/CyjKun/contact-api.git
 - $ cd contact-api
 
 ### Startup database
-- $ `docker-compose up -d`
+- $ docker-compose up -d
 
 ### Start application
-- $ `./gradlew clean build bootRun`
+- $ ./gradlew clean build bootRun
 
 Your app should be running now on localhost:8080
 
