@@ -3,6 +3,7 @@ package com.ms3.contactapi.api.controller;
 import com.ms3.contactapi.api.request.ContactForm;
 import com.ms3.contactapi.api.response.ContactResource;
 import com.ms3.contactapi.api.service.ContactService;
+import com.ms3.contactapi.common.model.PaginatedItem;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,7 +25,7 @@ public class ContactApiController {
     }
 
     @GetMapping
-    public List<ContactResource>  getAllContacts() {
+    public PaginatedItem<? extends ContactResource> getAllContacts() {
         return contactService.getAllContacts();
     }
 

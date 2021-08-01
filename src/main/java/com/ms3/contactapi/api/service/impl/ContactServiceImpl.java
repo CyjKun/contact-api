@@ -10,10 +10,12 @@ import com.ms3.contactapi.api.request.ContactForm;
 import com.ms3.contactapi.api.request.ContactParam;
 import com.ms3.contactapi.api.response.ContactResource;
 import com.ms3.contactapi.api.service.ContactService;
+import com.ms3.contactapi.common.model.PaginatedItem;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -34,9 +36,9 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<ContactResource> getAllContacts() {
+    public PaginatedItem<? extends ContactResource> getAllContacts() {
         List<ContactEntity> contactEntities = contactGateway.getAll();
-        return mapper.mapAsList(contactEntities, ContactResource.class);
+        return buildPaginatedResource(contactEntities);
     }
 
     @Override
@@ -56,5 +58,20 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void deleteContact(Long id) {
         contactGateway.deletedById(id);
+    }
+
+    private PaginatedItem<? extends ContactResource> buildPaginatedResource(List<ContactEntity> contactEntities) {
+        List<ContactResource> resources = addResourceMetadataOnMapping(contactEntities);
+        return new PaginatedItem<>(resources, 1, contactEntities.size());
+    }
+
+    private List<ContactResource> addResourceMetadataOnMapping(List<ContactEntity> contactEntities) {
+        return contactEntities.stream()
+                .map(this::buildResourceWithMetadata)
+                .collect(Collectors.toList());
+    }
+
+    private ContactResource buildResourceWithMetadata(ContactEntity contactEntity) {
+        return mapper.map(contactEntity, ContactResource.class);
     }
 }
