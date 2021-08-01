@@ -19,7 +19,7 @@
 Your app should be running now on localhost:8080
 
 #### Notes
-- You can import the database using these credentials after running `docker-compuse-up -d` and running the application by `./gradlew clean build BootRun` 
+- You can import the database using these credentials after running `docker-compose-up -d` and running the application by `./gradlew clean build BootRun` 
 ```
     url: jdbc:postgresql://localhost:5433/ms3db
     username: postgres
